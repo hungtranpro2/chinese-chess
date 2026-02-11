@@ -9,12 +9,9 @@ export function useSocket() {
   const socketRef = useRef<TypedSocket | null>(null);
 
   useEffect(() => {
-    const url = process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001";
-
-    console.log(
-      process.env.NEXT_PUBLIC_SOCKET_URL,
-      "process.env.NEXT_PUBLIC_SOCKET_URL",
-    );
+    const url =
+      process.env.NEXT_PUBLIC_SOCKET_URL ||
+      "https://chinese-chess-production.up.railway.app";
 
     const socket: TypedSocket = io(url, {
       transports: ["websocket", "polling"],
