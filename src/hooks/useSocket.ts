@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-import { io, Socket } from 'socket.io-client';
-import { ClientToServerEvents, ServerToClientEvents } from '../../server/types';
+import { useEffect, useRef, useState } from "react";
+import { io, Socket } from "socket.io-client";
+import { ClientToServerEvents, ServerToClientEvents } from "../../server/types";
 
 type TypedSocket = Socket<ServerToClientEvents, ClientToServerEvents>;
 
@@ -9,9 +9,15 @@ export function useSocket() {
   const socketRef = useRef<TypedSocket | null>(null);
 
   useEffect(() => {
-    const url = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001';
+    const url = process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:3001";
+
+    console.log(
+      process.env.NEXT_PUBLIC_SOCKET_URL,
+      "process.env.NEXT_PUBLIC_SOCKET_URL",
+    );
+
     const socket: TypedSocket = io(url, {
-      transports: ['websocket', 'polling'],
+      transports: ["websocket", "polling"],
       reconnection: true,
       reconnectionAttempts: 5,
       reconnectionDelay: 1000,
@@ -20,11 +26,11 @@ export function useSocket() {
 
     socketRef.current = socket;
 
-    socket.on('connect', () => {
+    socket.on("connect", () => {
       setIsConnected(true);
     });
 
-    socket.on('disconnect', () => {
+    socket.on("disconnect", () => {
       setIsConnected(false);
     });
 
