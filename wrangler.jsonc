@@ -2,7 +2,5 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "chinese-chess",
   "compatibility_date": "2026-02-11",
-  "assets": {
-    "directory": "./out"
-  }
+  "pages_build_output_dir": "out"
 }
